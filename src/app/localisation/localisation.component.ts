@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Injectable } from '@angular/core';HttpClient
+
+import { ApiBanService } from '../service/api-ban.service';
 
 
 
@@ -12,13 +12,18 @@ import { Injectable } from '@angular/core';HttpClient
   styleUrl: './localisation.component.css'
 })
 
-@Injectable()
+
 
 export class LocalisationComponent {
-  constructor(private http:HttpClient){}
+public ville:any;
 
-  public ville:any;
-  public coord:any;
+constructor(private apiBanService:ApiBanService){}
+
+
+ngOnInit(): void {
+  console.log("res :"+this.apiBanService.res);
+ this.ville=this.apiBanService.res;
+  }
 
 
 }

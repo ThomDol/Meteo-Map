@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Injectable } from '@angular/core';
 import { FormControl,ReactiveFormsModule } from '@angular/forms';
+import { ApiBanService } from '../service/api-ban.service';
+
 
 
 @Component({
@@ -16,23 +17,29 @@ import { FormControl,ReactiveFormsModule } from '@angular/forms';
 
 export class FormulaireComponent {
  
-constructor(private http:HttpClient){}
+constructor(private apiBanService:ApiBanService){}
 
-public urlApiBan = "https://api-adresse.data.gouv.fr/search/?q=postcode=";
 
 public renvoi:any;  
 
 public postCode = new FormControl('');
 
-display(){
-  return(this.http.get(this.urlApiBan+this.postCode.value).
-  subscribe(data=>{
+stockData():void{
 
+  this.apiBanService.saveData(this.postCode.value).
+  subscribe((data:any)=>{
+    this.apiBanService.res=data.features[0].properties.city,
+    console.log(data.features[0].properties.city),
+    console.log(this.apiBanService.res)
+    ;
+    });
     
-  })
+
+
   
   
-  )
+  
+  
 }
 
 }
