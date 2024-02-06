@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row text-center">
+        <div class="col-lg-6 mx-auto mt-5">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Entrer le code postal</label>
+                <input id="postCode" type="text" class="form-control" [formControl]="postCode" >
+                
+
+            </div>
+
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-lg-6 mx-auto mt-5">
+            <button type="submit" (click)="display()" class="btn btn-warning mb-3">Valider</button>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div id="renvoi" class="col-lg-6 mx-auto">{{renvoi}}</div>
+    </div>
+  
