@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Injectable } from '@angular/core';HttpClient
+
+
 
 @Component({
   selector: 'app-localisation',
@@ -7,6 +11,14 @@ import { Component } from '@angular/core';
   templateUrl: './localisation.component.html',
   styleUrl: './localisation.component.css'
 })
+
+@Injectable()
+
 export class LocalisationComponent {
+  constructor(private http:HttpClient){}
+
+  public ville:any;
+  public coord:any;
+
 
 }

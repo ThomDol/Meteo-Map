@@ -2,5 +2,7 @@ import { Routes } from '@angular/router';
 import { FormulaireComponent } from './formulaire/formulaire.component';
 
 export const routes: Routes = [
-    {path:'',component:FormulaireComponent}
+    {path:'',component:FormulaireComponent},
+    
+    
 ];
