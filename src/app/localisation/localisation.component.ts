@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injectable, OnChanges, OnInit, SimpleChanges, input } from '@angular/core';
 
 import { ApiBanService } from '../service/api-ban.service';
 
@@ -12,17 +12,15 @@ import { ApiBanService } from '../service/api-ban.service';
   styleUrl: './localisation.component.css'
 })
 
+export class LocalisationComponent implements OnChanges {
+  public ville: string = '';
+  constructor(private apiBanService:ApiBanService){} ;
 
 
-export class LocalisationComponent {
-public ville:any;
 
-constructor(private apiBanService:ApiBanService){}
-
-
-ngOnInit(): void {
-  console.log("res :"+this.apiBanService.res);
- this.ville=this.apiBanService.res;
+  ngOnChanges(changes: SimpleChanges): void {
+    
+    throw new Error('Method not implemented.');
   }
 
 

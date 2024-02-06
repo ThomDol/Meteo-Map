@@ -1,23 +1,24 @@
 import { Component, Injectable } from '@angular/core';
 import { FormControl,ReactiveFormsModule } from '@angular/forms';
 import { ApiBanService } from '../service/api-ban.service';
+import { LocalisationComponent } from '../localisation/localisation.component';
 
 
 
 @Component({
   selector: 'app-formulaire',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,LocalisationComponent],
   templateUrl: './formulaire.component.html',
   styleUrl: './formulaire.component.css',
   
 })
 
-@Injectable()
+
 
 export class FormulaireComponent {
- 
-constructor(private apiBanService:ApiBanService){}
+
+constructor(private apiBanService:ApiBanService){};
 
 
 public renvoi:any;  
@@ -28,11 +29,16 @@ stockData():void{
 
   this.apiBanService.saveData(this.postCode.value).
   subscribe((data:any)=>{
-    this.apiBanService.res=data.features[0].properties.city,
-    console.log(data.features[0].properties.city),
-    console.log(this.apiBanService.res)
-    ;
+    this.apiBanService.setResVille(data.features[0].properties.city),
+    this.apiBanService.setResCoordX(data.features[2].geometry.coordinates[0]),
+    this.apiBanService.setResCoordY(data.features[2].geometry.coordinates[1]),
+    console.log(this.apiBanService.getResVille()),
+    console.log(this.apiBanService.getResCoordX()),
+    console.log(this.apiBanService.getResCoordY());
+    
     });
+    
+    
     
 
 
