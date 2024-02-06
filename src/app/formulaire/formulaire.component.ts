@@ -31,12 +31,11 @@ stockData():void{
   subscribe((data:any)=>{
     this.apiBanService.setResVille(data.features[0].properties.city),
     this.apiBanService.setResCoordX(data.features[2].geometry.coordinates[0]),
-    this.apiBanService.setResCoordY(data.features[2].geometry.coordinates[1]),
-    console.log(this.apiBanService.getResVille()),
-    console.log(this.apiBanService.getResCoordX()),
-    console.log(this.apiBanService.getResCoordY());
+    this.apiBanService.setResCoordY(data.features[2].geometry.coordinates[1]);
     
-    });
+    
+    
+    });}
     
     
     
@@ -48,4 +47,4 @@ stockData():void{
   
 }
 
-}
+

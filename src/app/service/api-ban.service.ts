@@ -2,27 +2,37 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+
+
+@Injectable()
+
 export class ApiBanService {
   public urlApiBan = "https://api-adresse.data.gouv.fr/search/?q=postcode=";
-  private resVille : any;
+  
   private resCoordX:any;
   private resCoordY:any;
-  
+  private resVilleSubject: Subject<any> = new Subject<any>();
+  private resCoordXSubject : Subject<any> = new Subject<any>();
+  private resCoordYSubject : Subject<any> = new Subject<any>();
 
   constructor(private http:HttpClient) { }
   
-  setResVille(value:any){this.resVille=value;}
-  setResCoordX(value:any){this.resCoordX=value;}
-  setResCoordY(value:any){this.resCoordY=value;}
-
-  getResVille(){return this.resVille;}
-  getResCoordX(){return this.resCoordX;}
-  getResCoordY(){return this.resCoordY;}
+  setResVille(value:any){this.resVilleSubject.next(value);}
+  setResCoordX(value:any){this.resCoordXSubject.next(value);}
+  setResCoordY(value:any){this.resCoordYSubject.next(value);}
 
   
+  getResCoordXSubject():Observable<any> {
+    return this.resCoordXSubject.asObservable();
+  }
+
+  getResCoordYSubject():Observable<any> {
+    return this.resCoordYSubject.asObservable();
+  }
+
+  getResVilleSubject(): Observable<any> {
+    return this.resVilleSubject.asObservable();
+  }
 
   
 
