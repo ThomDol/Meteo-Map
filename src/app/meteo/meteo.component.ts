@@ -10,7 +10,7 @@ import { ApiWeatherService } from '../service/api-weather.service';
 })
 export class MeteoComponent implements OnInit {
 public meteo:any;
-public temperature:number | undefined;
+public temperature!:number;
 
 constructor(private apiWeatherService : ApiWeatherService){}
   ngOnInit(): void {

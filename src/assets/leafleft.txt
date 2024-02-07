@@ -1,0 +1,45 @@
+Dans un contexte Angular, si vous utilisez Leaflet dans un composant TypeScript, vous devez importer les types Leaflet pour que TypeScript reconnaisse les symboles de Leaflet. Voici comment vous pouvez procéder :
+
+Assurez-vous d'avoir installé Leaflet et ses types TypeScript :
+
+bash
+Copy code
+npm install leaflet @types/leaflet
+Dans votre composant TypeScript, importez Leaflet :
+
+typescript
+Copy code
+import * as L from 'leaflet';
+Utilisez ensuite Leaflet comme vous le feriez normalement. Par exemple :
+
+typescript
+Copy code
+ngOnInit() {
+  const map = L.map('map').setView([latitude, longitude], 13);
+  // Ajoutez le reste de votre logique Leaflet ici
+}
+En important * as L, vous importez tout l'espace de noms de Leaflet sous le nom L, ce qui signifie que vous pouvez utiliser L.map, L.tileLayer, L.marker, etc. conformément à la documentation Leaflet habituelle.
+
+
+Bien sûr, voici une explication de la fonction initMap() :
+
+this.map = L.map('map').setView([this.latitude, this.longitude], 13); : Cette ligne crée une nouvelle carte Leaflet en utilisant la méthode L.map() et la méthode setView() pour définir le centre initial de la carte. 'map' est l'ID de l'élément HTML où la carte sera affichée. [this.latitude, this.longitude] spécifie les coordonnées de latitude et de longitude du centre de la carte, tandis que 13 est le niveau de zoom initial de la carte.
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map); : Cette ligne ajoute une couche de tuiles à la carte à l'aide de la méthode L.tileLayer(). Les tuiles sont des images pré-rendues qui composent la carte. Dans cet exemple, nous utilisons les tuiles OpenStreetMap. {s} est un substitut pour les sous-domaines des serveurs de tuiles pour une distribution de charge équilibrée. {z}, {x} et {y} sont des variables qui seront remplacées par le niveau de zoom de la carte et les coordonnées de la tuile.
+
+L.marker([this.latitude, this.longitude]).addTo(this.map); : Cette ligne ajoute un marqueur à la carte à l'aide de la méthode L.marker(). [this.latitude, this.longitude] spécifie les coordonnées où le marqueur sera placé. Ensuite, addTo(this.map) ajoute le marqueur à la carte.
+
+La fonction updateMap() est responsable de mettre à jour la carte avec de nouvelles coordonnées et de placer un nouveau marqueur à la position correspondante.
+
+Voici une explication ligne par ligne de cette fonction :
+
+if (this.map) { : Cette condition vérifie si this.map est défini. Cela garantit que nous ne tentons pas de mettre à jour la carte si elle n'est pas encore initialisée.
+
+this.map.setView([this.latitude, this.longitude], 13); : Cette ligne met à jour la vue de la carte avec de nouvelles coordonnées ([this.latitude, this.longitude]) et un niveau de zoom spécifique (13). Cela ajuste la position et le niveau de zoom de la carte pour correspondre aux nouvelles coordonnées.
+
+const marker = L.marker([this.latitude, this.longitude]); : Cette ligne crée un nouveau marqueur à partir des nouvelles coordonnées.
+
+this.map.eachLayer((layer: any) => { if (layer instanceof L.Marker) { layer.remove(); } }); : Cette boucle parcourt tous les calques de la carte et supprime ceux qui sont des marqueurs. Cela garantit qu'un seul marqueur est affiché à la fois sur la carte.
+
+marker.addTo(this.map); : Cette ligne ajoute le nouveau marqueur à la carte.
+

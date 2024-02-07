@@ -1,5 +1,9 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
 
 body{
-    background-color: cornflowerblue !important;
+    /*background-color: cornflowerblue !important;*/
+    background-image: url("assets/concept-retour-ecole-diverses-fournitures.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }

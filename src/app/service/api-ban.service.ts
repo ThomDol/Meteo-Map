@@ -11,8 +11,8 @@ export class ApiBanService {
   
   
   private resVilleSubject: Subject<any> = new Subject<any>();
-  private resCoordXSubject : Subject<any> = new Subject<any>();
-  private resCoordYSubject : Subject<any> = new Subject<any>();
+  private resCoordXSubject : Subject<number> = new Subject<number>();
+  private resCoordYSubject : Subject<number> = new Subject<number>();
 
   constructor(private http:HttpClient) { }
   
@@ -21,11 +21,11 @@ export class ApiBanService {
   setResCoordY(value:any){this.resCoordYSubject.next(value);}
 
   
-  getResCoordXSubject():Observable<any> {
+  getResCoordXSubject():Observable<number> {
     return this.resCoordXSubject.asObservable();
   }
 
-  getResCoordYSubject():Observable<any> {
+  getResCoordYSubject():Observable<number> {
     return this.resCoordYSubject.asObservable();
   }
 
