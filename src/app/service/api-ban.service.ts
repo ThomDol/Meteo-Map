@@ -13,12 +13,14 @@ export class ApiBanService {
   private resVilleSubject: Subject<any> = new Subject<any>();
   private resCoordXSubject : Subject<number> = new Subject<number>();
   private resCoordYSubject : Subject<number> = new Subject<number>();
+  
 
   constructor(private http:HttpClient) { }
   
   setResVille(value:any){this.resVilleSubject.next(value);}
   setResCoordX(value:any){this.resCoordXSubject.next(value);}
   setResCoordY(value:any){this.resCoordYSubject.next(value);}
+  
 
   
   getResCoordXSubject():Observable<number> {
@@ -34,9 +36,9 @@ export class ApiBanService {
   }
 
   
+  
 
   saveData(value:any):Observable<any>{
-    console.log("requete effectue");
     return this.http.get(this.urlApiBan+value)
     
     }

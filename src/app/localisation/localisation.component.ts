@@ -17,6 +17,7 @@ export class LocalisationComponent implements OnInit {
   public ville: any="";
   public coordX : any="";
   public coordY : any="";
+  public population : any="";
 
 
   constructor(private apiBanService:ApiBanService,private apiWeatherService:ApiWeatherService){} ;
@@ -31,7 +32,7 @@ ngOnInit(): void {
     this.apiBanService.getResCoordXSubject().subscribe((coordX: any) => {
       this.coordX = coordX;});
     this.apiBanService.getResCoordYSubject().subscribe((coordY: any) => {
-        this.coordY = coordY;});
+        this.coordY = coordY;})
     
     }
     

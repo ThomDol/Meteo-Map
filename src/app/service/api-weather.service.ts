@@ -30,7 +30,6 @@ export class ApiWeatherService {
 
 
   saveData(value:any):Observable<any>{
-    console.log("requete effectue");
     return this.http.get(this.urlWeather+value+",fr&units=metric&APPID=c6d95fe0c1ce7fa84a6cddfe533bfd94");
     
     }
