@@ -1,0 +1,32 @@
+Qu'est-ce qu'un Subject ? Un Subject est un type spécial d'observable fourni par RxJS, la bibliothèque de gestion des flux de données utilisée par Angular. Un Subject est à la fois un observateur et un observable. Cela signifie qu'il peut émettre des valeurs (comme un émetteur) et également être souscrit pour écouter ces valeurs (comme un observateur). Dans ce cas, nous utilisons un Subject pour que notre service puisse émettre des valeurs (la ville récupérée de l'API) et que les composants puissent s'abonner pour être notifiés lorsque de nouvelles valeurs sont émises.
+
+Pourquoi utiliser next() dans le setter ? Lorsque nous voulons émettre une nouvelle valeur à partir d'un Subject, nous utilisons la méthode next(). Dans notre cas, chaque fois que la valeur de la ville est mise à jour (par exemple, après avoir reçu une réponse de l'API), nous utilisons next() pour émettre cette nouvelle valeur aux composants qui se sont abonnés à ce Subject.
+
+Pourquoi utiliser asObservable() dans le getter ? La méthode asObservable() est utilisée pour masquer le fait que resVilleSubject est un Subject. Cela signifie que les composants qui s'abonnent à ce Subject ne pourront que recevoir des notifications, ils ne pourront pas émettre de nouvelles valeurs à travers lui. C'est une bonne pratique pour garantir que les composants ne modifient pas involontairement l'état interne du service.
+
+Pourquoi s'abonner à getResVilleSubject() dans localisation.ts ? Lorsque nous appelons getResVilleSubject() dans LocalisationComponent et que nous nous abonnons avec subscribe(), cela signifie que ce composant sera informé chaque fois qu'une nouvelle valeur sera émise par le Subject. Ainsi, lorsque la ville est mise à jour dans ApiBanService, LocalisationComponent recevra cette nouvelle valeur et pourra mettre à jour sa propre propriété ville, ce qui entraînera une mise à jour de l'affichage dans le template (localisation.html).
+
+En résumé, l'utilisation d'un Subject dans ce scénario permet une communication asynchrone entre différents composants, où les mises à jour d'une partie de l'application peuvent être propagées à d'autres parties pour refléter les changements dans l'interface utilisateur.
+
+Vous appelez this.http.get() pour effectuer une requête HTTP GET à l'URL spécifiée (this.urlApiBan + value). Cette méthode renvoie un objet observable qui émettra une valeur une fois que la réponse de la requête HTTP sera reçue.
+
+Ensuite, vous appelez subscribe() sur cet objet observable pour vous abonner aux notifications émises par celui-ci. Lorsque la réponse de la requête HTTP est reçue, la fonction de rappel que vous avez fournie à subscribe() est appelée avec les données de la réponse (data).
+
+À l'intérieur de cette fonction de rappel, vous utilisez les données reçues (data) pour extraire les informations qui vous intéressent. Dans votre cas, vous semblez extraire la ville (data.features[0].properties.city), la coordonnée X (data.features[2].geometry.coordinates[0]) et la coordonnée Y (data.features[2].geometry.coordinates[1]) à partir de l'objet JSON retourné par l'API. Ensuite, vous utilisez les méthodes setResVille(), setResCoordX() et setResCoordY() de apiBanService pour stocker ces informations dans le service afin qu'elles puissent être accessibles à d'autres parties de votre application.
+
+En résumé, oui, vous souscrivez à l'objet JSON récupéré dans l'API et vous récupérez les données qui vous intéressent à l'intérieur de la fonction de rappel passée à subscribe().
+
+----
+En informatique et en développement logiciel, les termes "observateur" et "observable" sont souvent utilisés dans le contexte de la programmation réactive et de la conception de systèmes interactifs. Voici ce qu'ils signifient dans ce contexte :
+
+Observateur :
+
+En programmation, un observateur est un patron de conception (design pattern) qui permet à un objet, appelé "observateur", de surveiller les changements d'état ou les événements d'un autre objet, appelé "sujet" ou "observable".
+L'observateur est notifié lorsque le sujet subit un changement, lui permettant ainsi de réagir en conséquence.
+Ce patron de conception est largement utilisé dans les interfaces utilisateur, les applications où des mises à jour en temps réel sont nécessaires, les systèmes de gestion d'événements, etc.
+Observable :
+
+En programmation réactive, un "observable" est un objet qui émet des valeurs ou des événements au fil du temps.
+Les observables peuvent être utilisés pour représenter une source de données asynchrone, telle que les clics de souris, les saisies utilisateur, les mises à jour de bases de données, etc.
+Les observables sont souvent utilisés conjointement avec les observateurs pour créer des applications réactives où les composants réagissent dynamiquement aux changements dans les données ou l'état du système.
+En résumé, en développement informatique, un observateur est un objet qui surveille les changements d'un autre objet, tandis qu'un observable est un objet qui émet des valeurs ou des événements au fil du temps. Ces concepts sont largement utilisés dans la programmation réactive pour créer des systèmes interactifs et dynamiques.

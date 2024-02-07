@@ -2,6 +2,7 @@ import { Component, Injectable } from '@angular/core';
 import { FormControl,ReactiveFormsModule } from '@angular/forms';
 import { ApiBanService } from '../service/api-ban.service';
 import { LocalisationComponent } from '../localisation/localisation.component';
+import { ApiWeatherService } from '../service/api-weather.service';
 
 
 
@@ -18,24 +19,27 @@ import { LocalisationComponent } from '../localisation/localisation.component';
 
 export class FormulaireComponent {
 
-constructor(private apiBanService:ApiBanService){};
+constructor(private apiBanService:ApiBanService,apiWeatherService:ApiWeatherService){};
 
 
-public renvoi:any;  
+
 
 public postCode = new FormControl('');
 
 stockData():void{
+  
 
   this.apiBanService.saveData(this.postCode.value).
   subscribe((data:any)=>{
     this.apiBanService.setResVille(data.features[0].properties.city),
     this.apiBanService.setResCoordX(data.features[2].geometry.coordinates[0]),
-    this.apiBanService.setResCoordY(data.features[2].geometry.coordinates[1]);
-    
-    
-    
-    });}
+    this.apiBanService.setResCoordY(data.features[2].geometry.coordinates[1]);});
+  
+  
+  
+  }
+
+  
     
     
     

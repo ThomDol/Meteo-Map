@@ -1,6 +1,7 @@
 import { Component, Injectable, OnChanges, OnInit, SimpleChanges, input } from '@angular/core';
 
 import { ApiBanService } from '../service/api-ban.service';
+import { ApiWeatherService } from '../service/api-weather.service';
 
 
 
@@ -18,17 +19,21 @@ export class LocalisationComponent implements OnInit {
   public coordY : any;
 
 
-  constructor(private apiBanService:ApiBanService){} ;
+  constructor(private apiBanService:ApiBanService,private apiWeatherService:ApiWeatherService){} ;
 
- ngOnInit(): void {
+ngOnInit(): void {
     console.log("check");
     this.apiBanService.getResVilleSubject().subscribe((ville: any) => {
-      this.ville = ville;});
+      this.ville = ville;
+      this.apiWeatherService.saveData(ville).subscribe((data:any)=>{this.apiWeatherService.setWeatherDescript(data.weather[0].main);
+      console.log("requete weather faite");});});
     this.apiBanService.getResCoordXSubject().subscribe((coordX: any) => {
-      this.coordX = coordX;});
+      this.coordX = coordX;
+    console.log("long recuperee")});
     this.apiBanService.getResCoordYSubject().subscribe((coordY: any) => {
         this.coordY = coordY;});
-  }
+    
+    }
     
   }
 

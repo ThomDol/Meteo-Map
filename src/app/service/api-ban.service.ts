@@ -9,8 +9,7 @@ import { Observable, Subject } from 'rxjs';
 export class ApiBanService {
   public urlApiBan = "https://api-adresse.data.gouv.fr/search/?q=postcode=";
   
-  private resCoordX:any;
-  private resCoordY:any;
+  
   private resVilleSubject: Subject<any> = new Subject<any>();
   private resCoordXSubject : Subject<any> = new Subject<any>();
   private resCoordYSubject : Subject<any> = new Subject<any>();
