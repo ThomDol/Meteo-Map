@@ -1,8 +1,8 @@
-import { Component, Injectable } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl,ReactiveFormsModule } from '@angular/forms';
 import { ApiBanService } from '../service/api-ban.service';
 import { LocalisationComponent } from '../localisation/localisation.component';
-import { ApiWeatherService } from '../service/api-weather.service';
+
 
 
 
@@ -19,7 +19,7 @@ import { ApiWeatherService } from '../service/api-weather.service';
 
 export class FormulaireComponent {
 
-constructor(private apiBanService:ApiBanService,apiWeatherService:ApiWeatherService){};
+constructor(private apiBanService:ApiBanService){};
 
 
 

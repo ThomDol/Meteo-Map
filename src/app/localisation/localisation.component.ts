@@ -25,8 +25,13 @@ ngOnInit(): void {
     console.log("check");
     this.apiBanService.getResVilleSubject().subscribe((ville: any) => {
       this.ville = ville;
-      this.apiWeatherService.saveData(ville).subscribe((data:any)=>{this.apiWeatherService.setWeatherDescript(data.weather[0].main);
-      console.log("requete weather faite");});});
+      this.apiWeatherService.saveData(ville).subscribe((data:any)=>{
+        this.apiWeatherService.setWeatherDescript(data.weather[0].description);
+        console.log("requete weather faite"),
+        this.apiWeatherService.setTemperature(data.main.temp),
+        console.log("requete temperature faite");
+                });
+    });
     this.apiBanService.getResCoordXSubject().subscribe((coordX: any) => {
       this.coordX = coordX;
     console.log("long recuperee")});

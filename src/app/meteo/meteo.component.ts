@@ -10,10 +10,12 @@ import { ApiWeatherService } from '../service/api-weather.service';
 })
 export class MeteoComponent implements OnInit {
 public meteo:any;
+public temperature:number | undefined;
 
 constructor(private apiWeatherService : ApiWeatherService){}
   ngOnInit(): void {
     this.apiWeatherService.getWeatherDescript().subscribe((meteo:any)=>{this.meteo=meteo;});
+    this.apiWeatherService.getTemperature().subscribe((temperature:any)=>{this.temperature=temperature;});
     throw new Error('Method not implemented.');
   }
 
