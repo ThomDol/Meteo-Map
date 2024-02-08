@@ -14,7 +14,7 @@ public temperature!:number;
 
 constructor(private apiWeatherService : ApiWeatherService){}
   ngOnInit(): void {
-    this.apiWeatherService.getWeatherDescript().subscribe((meteo:any)=>{this.meteo=meteo;});
+    this.apiWeatherService.getWeatherDescript().subscribe((meteo:any)=>{this.meteo="http://openweathermap.org/img/w/"+meteo+".png";});
     this.apiWeatherService.getTemperature().subscribe((temperature:any)=>{this.temperature=temperature;});
     throw new Error('Method not implemented.');
   }

@@ -26,7 +26,7 @@ ngOnInit(): void {
     this.apiBanService.getResVilleSubject().subscribe((ville: any) => {
       this.ville = ville;
       this.apiWeatherService.saveData(ville).subscribe((data:any)=>{
-        this.apiWeatherService.setWeatherDescript(data.weather[0].description),
+        this.apiWeatherService.setWeatherDescript(data.weather[0].icon),
         this.apiWeatherService.setTemperature(data.main.temp)});});
 
     this.apiBanService.getResCoordXSubject().subscribe((coordX: any) => {
